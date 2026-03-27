@@ -75,6 +75,8 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
         <form method="POST">
             <input type="text" name="cat_name" placeholder="Nom de la catégorie (ex: Python, Design...)" >
             <button type="submit" name="add_category">Ajouter</button>
+            <link rel="stylesheet" href="style.css">
+
         </form>
     </div>
 

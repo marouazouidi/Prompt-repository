@@ -42,6 +42,8 @@ $prompts = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Prompts</title>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 <div>

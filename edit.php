@@ -44,22 +44,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <head>
 <title>Edit Device</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 </head>
 <body>
 
-    <div class="container mt-5">
-        <h2 class="mb-4">✏️ Modifier Prompts</h2>
+    <div>
+        <h2>✏️ Modifier Prompts</h2>
         
-        <form method="POST" class="card p-4 shadow">
+        <form method="POST">
 
-            <input class="form-control mb-3" name="title" value="<?php echo ($prompts['title']); ?>" placeholder="le titre">
-            <textarea class="form-control mb-3" name="content" placeholder="Prompt">
+            <input name="title" value="<?php echo ($prompts['title']); ?>" placeholder="le titre">
+            <textarea name="content" placeholder="Prompt">
             <?php echo $prompts['content']; ?>
             </textarea>
             
-            <select class="form-select mb-3" name="category_id" >  
+            <select name="category_id" >  
                 <option value="">Selectionner une catégorie</option>  
             <?php foreach($cats as $c){ ?> 
             <option value="<?php echo $c['id']; ?>">
@@ -68,9 +68,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             <?php }?>
             </select>
 
-            <div class="d-flex justify-content-between">
-                <a href="dashboard.php" class="btn btn-secondary">⬅ Retour</a>
-                <button class="btn btn-primary">Modifier</button>
+            <div>
+                <a href="dashboard.php" >⬅ Retour</a>
+                <button >Modifier</button>
             </div>
             
         
