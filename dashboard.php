@@ -38,66 +38,90 @@ $prompts = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Prompts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Library - DevGenius</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
-<body>
-<div>
-    <h1>📂 Repository des Prompts</h1>
-    <a href="add.php" >➕ Add Prompt</a>
-    <a href="logout.php" >🚪 Logout</a>
+<body class="dash-body">
 
-    <!-- Filter par category -->
-    <form method="GET">
-        <select name="category_filter">
-            <option value="">📂 Tous les catégories</option>
-            <?php foreach($cats as $c): ?>
-                <option value="<?= $c['id'] ?>" <?= ($category_filter==$c['id']) ? 'selected' : '' ?>>
-                    <?php echo($c['name']) ?>
-                </option>
+    <!-- ===== TOP NAV ===== -->
+    <nav class="dash-nav">
+        <span class="dash-nav-brand">DevGenius</span>
+        <div class="dash-nav-right">
+            <a href="logout.php" class="dash-nav-link">Logout</a>
+            <div class="dash-avatar">👤</div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="dash-main">
+
+        <!-- Page header -->
+        <div class="dash-header">
+            <div>
+                <h1 class="dash-title">Prompt Library</h1>
+                <p class="dash-subtitle">Curate and manage your collection of high-performance AI architectural blueprints.</p>
+            </div>
+        </div>
+
+        <!-- Filter bar + Add button -->
+        <div class="dash-toolbar">
+            <form method="GET" class="dash-filters">
+                <button type="submit" name="category_filter" value=""
+                    class="filter-pill <?= (!$category_filter) ? 'active' : '' ?>">All</button>
+                <?php foreach($cats as $c): ?>
+                    <button type="submit" name="category_filter" value="<?= $c['id'] ?>"
+                        class="filter-pill <?= ($category_filter == $c['id']) ? 'active' : '' ?>">
+                        <?= htmlspecialchars($c['name']) ?>
+                    </button>
+                <?php endforeach; ?>
+            </form>
+            <a href="add.php" class="btn-add">+ Add Prompt</a>
+        </div>
+
+        <!-- ===== CARD GRID ===== -->
+        <?php if(count($prompts) == 0): ?>
+            <div class="dash-empty">
+                <p>Aucune prompt pour l'instant. <a href="add.php">Créez le premier !</a></p>
+            </div>
+        <?php else: ?>
+        <div class="prompt-grid">
+            <?php foreach($prompts as $p): ?>
+            <div class="prompt-card">
+                <div class="prompt-card-top">
+                    <span class="category-badge"><?= htmlspecialchars($p['Categorie']) ?></span>
+                    <h2 class="prompt-card-title"><?= htmlspecialchars($p['title']) ?></h2>
+                    <p class="prompt-card-content"><?= htmlspecialchars(mb_substr($p['content'], 0, 120)) ?><?= mb_strlen($p['content']) > 120 ? '…' : '' ?></p>
+                </div>
+                <div class="prompt-card-footer">
+                    <span class="prompt-meta">
+                        🙍 <?= htmlspecialchars($p['Nom']) ?> <?= ($p['user_id'] == $user_id) ? '<em>(Moi)</em>' : '' ?>
+                    </span>
+                    <div class="prompt-actions">
+                        <?php if($_SESSION['role'] == 'Admin' || $p['user_id']==$user_id ): ?>
+                            <a href="edit.php?id=<?php echo $p['id'] ?>" class="action-btn edit-btn">Edit</a>
+                            <a href="delete.php?id=<?php echo $p['id'] ?>" class="action-btn delete-btn"
+                               onclick="return confirm('Voulez-vous vraiment supprimer cette prompts ?')">Delete</a>
+                        <?php else: ?>
+                            <span class="locked-badge">🔒</span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
             <?php endforeach; ?>
-        </select>
-        <button type="submit">Filtrer</button>
-    </form>
 
-    <!-- Table des prompts -->
-    <?php if(count($prompts) == 0): ?>
-        <p>Aucune prompt pour l'instant</p>
-    <?php else: ?>
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Catégorie</th>
-                <th>Title</th>
-                <th>Prompt</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-        <?php foreach($prompts as $p): ?>
-            <tr>
-                <td><?php echo($p['Nom']) ?> <?php echo ($p['user_id']==$user_id) ? '(Moi)' : '' ?></td>
-                <td><?php echo($p['Categorie']) ?></td>
-                <td><?php echo($p['title']) ?></td>
-                <td><?php echo($p['content']) ?></td>
-                <td>
-                    <?php if($_SESSION['role'] == 'Admin' || $p['user_id']==$user_id ): ?>
-                        <a href="edit.php?id=<?php echo $p['id'] ?>" >Edit</a>
-                        <a href="delete.php?id=<?php echo $p['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cette propmts ?')">Delete</a>
-                    <?php else: ?>
-                        <span>🔒</span>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-    <?php endif; ?>
-</div>
+            <!-- Create new prompt CTA card -->
+            <a href="add.php" class="prompt-card prompt-card-new">
+                <span class="new-card-plus">+</span>
+                <p>Create New Prompt</p>
+            </a>
+        </div>
+        <?php endif; ?>
+
+    </main>
+
 </body>
 </html>

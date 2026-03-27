@@ -45,62 +45,123 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - DevGenius</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="admin-body">
 
-    <h1>🛠️ Administration - Knowledge Base</h1>
-    <p>Bienvenue, <strong><?= $_SESSION['username'] ?></strong> | <a href="dashboard.php">🏠 Voir les Prompts</a>
-    <a href="logout.php">🚪 Logout</a>
-    </p>
+    <!-- ===== TOP NAV ===== -->
+    <nav class="admin-nav">
+        <span class="admin-nav-brand">DevGenius</span>
+        <div class="admin-nav-right">
+            <a href="dashboard.php" class="admin-nav-text">Dashboard Admin</a>
+            <a href="logout.php" class="admin-nav-logout">Logout</a>
+        </div>
+    </nav>
 
-    <div >
-        <div>
-            <p>👥 Utilisateurs</p>
-            <h2><?= $total_users ?></h2>
-        </div>
-        <div>
-            <p>📄 Prompts Stockés</p>
-            <h2><?= $total_prompts ?></h2>
-        </div>
-        <div>
-            <p>🏆 Top Contributeur</p>
-            <h2><?= $top_user['name'] ?? '---' ?></h2>
-            <small><?= $top_user['total_p'] ?? 0 ?> prompts postés</small>
-        </div>
+    <!-- ===== BREADCRUMB ===== -->
+    <div class="admin-breadcrumb">
+        <a href="dashboard.php" class="breadcrumb-link">Aller au Dashboard</a>
     </div>
 
-    <div>
-        <h3>➕ Ajouter une Catégorie</h3>
-        <form method="POST">
-            <input type="text" name="cat_name" placeholder="Nom de la catégorie (ex: Python, Design...)" >
-            <button type="submit" name="add_category">Ajouter</button>
-            <link rel="stylesheet" href="style.css">
+    <!-- ===== MAIN LAYOUT ===== -->
+    <main class="admin-main">
 
-        </form>
-    </div>
+        <!-- ===== STATS ROW ===== -->
+        <div class="admin-stats">
+            <div class="stat-card">
+                <p class="stat-label">Total Développeurs</p>
+                <p class="stat-value"><?= number_format($total_users) ?></p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">Total Prompts</p>
+                <p class="stat-value"><?= number_format($total_prompts) ?></p>
+            </div>
+            <div class="stat-card stat-card-top">
+                <p class="stat-label">Top Contributeur</p>
+                <div class="stat-top-user">
+                    <div class="stat-avatar"><?= strtoupper(mb_substr($top_user['name'] ?? 'X', 0, 2)) ?></div>
+                    <span class="stat-top-name"><?= htmlspecialchars($top_user['name'] ?? '---') ?></span>
+                </div>
+                <small class="stat-sub"><?= $top_user['total_p'] ?? 0 ?> prompts postés</small>
+            </div>
+        </div>
 
-    <h3>📂 Liste des Catégories</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nom</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($all_cats as $cat): ?>
-            <tr>
-                <td>#<?= $cat['id'] ?></td>
-                <td><strong><?= htmlspecialchars($cat['name']) ?></strong></td>
-                <td>
-                    <a href="admin.php?delete_cat=<?= $cat['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')">Supprimer</a>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+        <!-- ===== BOTTOM TWO COLUMNS ===== -->
+        <div class="admin-cols">
+
+            <!-- LEFT: Category table -->
+            <div class="admin-col-main">
+                <div class="admin-section-card">
+                    <div class="admin-section-header">
+                        <h2 class="admin-section-title">Gestion des Catégories</h2>
+                        <span class="admin-cat-count"><?= count($all_cats) ?> Catégories</span>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Nom de la Catégorie</th>
+                                <th>Items</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($all_cats as $cat): ?>
+                            <tr>
+                                <td><strong><?= htmlspecialchars($cat['name']) ?></strong></td>
+                                <td class="admin-td-id">#<?= $cat['id'] ?></td>
+                                <td>
+                                    <div class="admin-row-actions">
+                                        <a href="admin.php?delete_cat=<?= $cat['id'] ?>"
+                                           onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')"
+                                           class="admin-action-delete">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RIGHT: Add form + banner -->
+            <div class="admin-col-side">
+
+                <!-- Add category form -->
+                <div class="admin-section-card">
+                    <h3 class="admin-form-title">Ajouter une catégorie</h3>
+                    <form method="POST" class="admin-add-form">
+                        <label class="admin-add-label">Nom de la Catégorie</label>
+                        <input type="text" name="cat_name"
+                               placeholder="ex: Data Science"
+                               class="admin-add-input">
+                        <button type="submit" name="add_category" class="admin-add-btn">+ Ajouter</button>
+                    </form>
+                </div>
+
+                <!-- Promo banner -->
+                <div class="admin-banner">
+                    <p>Système de gestion sécurisé pour l'excellence technique.</p>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="admin-footer">
+        <div class="admin-footer-left">
+            <span class="admin-footer-brand">DevGenius</span>
+            <span>© 2024 DevGenius. Engineering Precision.</span>
+        </div>
+        <div class="admin-footer-links">
+            <a href="#">Documentation</a>
+            <a href="#">Support</a>
+            <a href="#">Privacy</a>
+        </div>
+    </footer>
 
 </body>
 </html>
