@@ -16,12 +16,12 @@ $sql_top = "SELECT users.name, COUNT(prompts.id) as total_p
             FROM users 
             JOIN prompts ON users.id = prompts.user_id 
             GROUP BY users.id 
-            ORDER BY total_p DESC LIMIT 1";
+            LIMIT 1";
 $top_user = $pdo->query($sql_top)->fetch(PDO::FETCH_ASSOC);
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_category'])) {
-    $cat_name = trim($_POST['cat_name']);
+    $cat_name = $_POST['cat_name'];
     if (!empty($cat_name)) {
         $stmt = $pdo->prepare("INSERT INTO categories (name) VALUES (?)");
         $stmt->execute([$cat_name]);
@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['add_category'])) {
 }
 
 if (isset($_GET['delete_cat'])) {
-    $id_to_delete = $_GET['delete_cat'];
+    $delete = $_GET['delete_cat'];
     $stmt = $pdo->prepare("DELETE FROM categories WHERE id = ?");
-    $stmt->execute([$id_to_delete]);
+    $stmt->execute([$delete]);
     header("Location: admin.php?success=deleted");
     exit();
 }

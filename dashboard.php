@@ -86,7 +86,7 @@ $prompts = $stmt->fetchAll();
                 <td>
                     <?php if($_SESSION['role'] == 'Admin' || $p['user_id']==$user_id ): ?>
                         <a href="edit.php?id=<?php echo $p['id'] ?>" >Edit</a>
-                        <a href="delete.php?id=<?php echo $p['id'] ?>" onclick="return confirm('Are you sure?')">Delete</a>
+                        <a href="delete.php?id=<?php echo $p['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cette propmts ?')">Delete</a>
                     <?php else: ?>
                         <span>🔒</span>
                     <?php endif; ?>
