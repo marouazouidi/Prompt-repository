@@ -46,17 +46,6 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
 <head>
     <meta charset="UTF-8">
     <title>Admin Panel - DevGenius</title>
-    <style>
-        body { font-family: sans-serif; background: #f4f7f6; padding: 20px; }
-        .stats-grid { display: flex; gap: 15px; margin-bottom: 30px; }
-        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex: 1; text-align: center; }
-        .card h2 { font-size: 2em; margin: 10px 0; color: #3498db; }
-        table { width: 100%; background: white; border-collapse: collapse; border-radius: 8px; overflow: hidden; }
-        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
-        th { background: #34495e; color: white; }
-        .btn-del { color: #e74c3c; text-decoration: none; font-weight: bold; }
-        .form-add { background: white; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-    </style>
 </head>
 <body>
 
@@ -65,27 +54,27 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
     <a href="logout.php">🚪 Logout</a>
     </p>
 
-    <div class="stats-grid">
-        <div class="card">
+    <div >
+        <div>
             <p>👥 Utilisateurs</p>
             <h2><?= $total_users ?></h2>
         </div>
-        <div class="card">
+        <div>
             <p>📄 Prompts Stockés</p>
             <h2><?= $total_prompts ?></h2>
         </div>
-        <div class="card">
+        <div>
             <p>🏆 Top Contributeur</p>
             <h2><?= $top_user['name'] ?? '---' ?></h2>
             <small><?= $top_user['total_p'] ?? 0 ?> prompts postés</small>
         </div>
     </div>
 
-    <div class="form-add">
+    <div>
         <h3>➕ Ajouter une Catégorie</h3>
         <form method="POST">
-            <input type="text" name="cat_name" placeholder="Nom de la catégorie (ex: Python, Design...)" required style="padding: 8px; width: 250px;">
-            <button type="submit" name="add_category" style="padding: 8px 15px; cursor: pointer;">Ajouter</button>
+            <input type="text" name="cat_name" placeholder="Nom de la catégorie (ex: Python, Design...)" >
+            <button type="submit" name="add_category">Ajouter</button>
         </form>
     </div>
 
@@ -104,7 +93,7 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
                 <td>#<?= $cat['id'] ?></td>
                 <td><strong><?= htmlspecialchars($cat['name']) ?></strong></td>
                 <td>
-                    <a href="admin.php?delete_cat=<?= $cat['id'] ?>" class="btn-del" onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')">Supprimer</a>
+                    <a href="admin.php?delete_cat=<?= $cat['id'] ?>" onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')">Supprimer</a>
                 </td>
             </tr>
             <?php endforeach; ?>
