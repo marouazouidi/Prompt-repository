@@ -79,7 +79,7 @@ $prompts = $stmt->fetchAll();
         <tbody>
         <?php foreach($prompts as $p): ?>
             <tr>
-                <td><?php echo($p['Nom']) ?> <?= ($p['user_id']==$user_id) ? '(Moi)' : '' ?></td>
+                <td><?php echo($p['Nom']) ?> <?php echo ($p['user_id']==$user_id) ? '(Moi)' : '' ?></td>
                 <td><?php echo($p['Categorie']) ?></td>
                 <td><?php echo($p['title']) ?></td>
                 <td><?php echo($p['content']) ?></td>

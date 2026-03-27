@@ -14,7 +14,7 @@ $total_prompts = $pdo->query("SELECT COUNT(*) FROM prompts")->fetchColumn();
 
 $sql_top = "SELECT users.name, COUNT(prompts.id) as total_p 
             FROM users 
-            LEFT JOIN prompts ON users.id = prompts.user_id 
+            JOIN prompts ON users.id = prompts.user_id 
             GROUP BY users.id 
             ORDER BY total_p DESC LIMIT 1";
 $top_user = $pdo->query($sql_top)->fetch(PDO::FETCH_ASSOC);
