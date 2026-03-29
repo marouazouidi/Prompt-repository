@@ -974,7 +974,6 @@ body>div:first-of-type>div>h2 {
     transition: border-color var(--speed), box-shadow var(--speed);
     cursor: pointer;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right .6rem center;
     background-size: 1.2rem;
@@ -1445,4 +1444,299 @@ body>div:first-of-type>div>h2 {
         justify-content: center;
     }
 }
+
+/* =========================================
+   ADMIN PANEL - SPECIFIC STYLE
+   ========================================= */
+
+.admin-body {
+    background-color: var(--bg);
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigation Admin */
+.admin-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+    padding: 0 2rem;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.admin-nav-brand {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.02em;
+}
+
+.admin-nav-logout {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #dc2626;
+    border: 1.5px solid #fecaca;
+    border-radius: var(--radius-md);
+    transition: all var(--speed);
+}
+
+.admin-nav-logout:hover {
+    background: #fef2f2;
+    border-color: #dc2626;
+    text-decoration: none;
+}
+
+/* Breadcrumb / Back Link */
+.admin-breadcrumb {
+    max-width: 1200px;
+    margin: 1.5rem auto 0;
+    padding: 0 2rem;
+}
+
+.breadcrumb-link {
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.breadcrumb-link::before {
+    content: '←';
+}
+
+/* Main Layout */
+.admin-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 4rem;
+}
+
+/* Stats Cards (Visual Data) */
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    transition: transform var(--speed), box-shadow var(--speed);
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-float);
+}
+
+.stat-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text);
+    margin: 0;
+}
+
+/* Special styling for Top Contributor card */
+.stat-card-top {
+    border-top: 4px solid var(--primary);
+}
+
+.stat-top-user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.stat-avatar {
+    width: 45px;
+    height: 45px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.stat-top-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--text);
+}
+
+.stat-sub {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* Columns Layout */
+.admin-cols {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .admin-cols { grid-template-columns: 1fr; }
+}
+
+.admin-section-card {
+    background: #fff;
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+}
+
+.admin-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.admin-section-title {
+    font-size: 1.25rem;
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.admin-cat-count {
+    font-size: 0.75rem;
+    background: #f1f5f9;
+    padding: 0.3rem 0.7rem;
+    border-radius: 50px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+/* Admin Table */
+.admin-table {
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+.admin-table:hover { transform: none; box-shadow: none; }
+
+.admin-table th {
+    background: transparent;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.admin-td-id { color: var(--muted); font-family: monospace; }
+
+/* Ghost Delete Button */
+.admin-action-delete {
+    color: #dc2626;
+    border: 1.5px solid #fecaca;
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    transition: all var(--speed);
+}
+
+.admin-action-delete:hover {
+    background: #fef2f2;
+    border-color: #dc2626;
+    text-decoration: none;
+}
+
+/* Form Sidebar */
+.admin-form-title {
+    margin-top: 0;
+    border-bottom: none;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-add-form {
+    padding: 0;
+    box-shadow: none;
+    max-width: 100%;
+    background: transparent;
+}
+
+.admin-add-form:hover { transform: none; box-shadow: none; }
+
+.admin-add-input {
+    background: #fff !important;
+}
+
+/* Ghost Add Button */
+.admin-add-btn {
+    width: 100%;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    box-shadow: none;
+}
+
+.admin-add-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+    border-color: var(--primary);
+    box-shadow: none;
+}
+
+/* Promo Banner */
+.admin-banner {
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4;
+    box-shadow: var(--shadow-md);
+}
+
+/* Footer Admin */
+.admin-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.admin-footer-brand { font-weight: 700; color: var(--text); margin-right: 1rem; }
+
+.admin-footer-links { display: flex; gap: 1.5rem; }
+
+.admin-footer-links a { color: var(--muted); font-size: 0.85rem; }
 

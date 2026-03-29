@@ -48,7 +48,7 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - DevGenius</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.1">
 </head>
 
 <body class="admin-body">
