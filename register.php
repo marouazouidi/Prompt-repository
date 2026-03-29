@@ -92,7 +92,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <a href="#">Privacy</a>
             <a href="#">Support</a>
         </p>
-        <p style="margin-top:.4rem;">© 2024 DevGenius. All rights reserved.</p>
+        <p style="margin-top:.4rem;">© 2026 DevGenius. All rights reserved.</p>
     </footer>
 
 </body>

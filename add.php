@@ -97,7 +97,7 @@ if($_SERVER['REQUEST_METHOD']=== 'POST'){
 
     <!-- Footer -->
     <footer class="add-footer">
-        <span>© 2024 DevGenius Architectural Blueprinting. All rights reserved.</span>
+        <span>© 2026 DevGenius Architectural Blueprinting. All rights reserved.</span>
         <div class="add-footer-links">
             <a href="#">Terms</a>
             <a href="#">Privacy</a>

@@ -2,7 +2,7 @@
 require 'db.php';
 session_start();
 
-if(!isset($_SESSION['user_id'])){
+if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
 }
@@ -43,19 +43,20 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - DevGenius</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="admin-body">
 
     <!-- ===== TOP NAV ===== -->
     <nav class="admin-nav">
         <span class="admin-nav-brand">DevGenius</span>
         <div class="admin-nav-right">
-            <a href="dashboard.php" class="admin-nav-text">Dashboard Admin</a>
             <a href="logout.php" class="admin-nav-logout">Logout</a>
         </div>
     </nav>
@@ -101,24 +102,24 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
                     <table class="admin-table">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Nom de la Catégorie</th>
-                                <th>Items</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($all_cats as $cat): ?>
-                            <tr>
-                                <td><strong><?= htmlspecialchars($cat['name']) ?></strong></td>
-                                <td class="admin-td-id">#<?= $cat['id'] ?></td>
-                                <td>
-                                    <div class="admin-row-actions">
-                                        <a href="admin.php?delete_cat=<?= $cat['id'] ?>"
-                                           onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')"
-                                           class="admin-action-delete">Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
+                            <?php foreach ($all_cats as $cat): ?>
+                                <tr>
+                                    <td class="admin-td-id">#<?= $cat['id'] ?></td>
+                                    <td><strong><?= htmlspecialchars($cat['name']) ?></strong></td>
+                                    <td>
+                                        <div class="admin-row-actions">
+                                            <a href="admin.php?delete_cat=<?= $cat['id'] ?>"
+                                                onclick="return confirm('Voulez-vous vraiment supprimer cette catégorie ?')"
+                                                class="admin-action-delete">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
@@ -133,9 +134,7 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
                     <h3 class="admin-form-title">Ajouter une catégorie</h3>
                     <form method="POST" class="admin-add-form">
                         <label class="admin-add-label">Nom de la Catégorie</label>
-                        <input type="text" name="cat_name"
-                               placeholder="ex: Data Science"
-                               class="admin-add-input">
+                        <input type="text" name="cat_name" placeholder="ex: Data Science" class="admin-add-input">
                         <button type="submit" name="add_category" class="admin-add-btn">+ Ajouter</button>
                     </form>
                 </div>
@@ -154,7 +153,7 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
     <footer class="admin-footer">
         <div class="admin-footer-left">
             <span class="admin-footer-brand">DevGenius</span>
-            <span>© 2024 DevGenius. Engineering Precision.</span>
+            <span>© 2026 DevGenius. Engineering Precision.</span>
         </div>
         <div class="admin-footer-links">
             <a href="#">Documentation</a>
@@ -164,4 +163,5 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
     </footer>
 
 </body>
+
 </html>
