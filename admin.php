@@ -69,11 +69,11 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
         <div class="admin-stats">
             <div class="stat-card">
                 <p class="stat-label">Total Développeurs</p>
-                <p class="stat-value"><?= number_format($total_users) ?></p>
+                <p class="stat-value"><?= $total_users ?></p>
             </div>
             <div class="stat-card">
                 <p class="stat-label">Total Prompts</p>
-                <p class="stat-value"><?= number_format($total_prompts) ?></p>
+                <p class="stat-value"><?= $total_prompts ?></p>
             </div>
             <div class="stat-card stat-card-top">
                 <p class="stat-label">Top Contributeur</p>
