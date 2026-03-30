@@ -53,7 +53,6 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
 
 <body class="admin-body">
 
-    <!-- ===== TOP NAV ===== -->
     <nav class="admin-nav">
         <span class="admin-nav-brand">DevGenius</span>
         <div class="admin-nav-right">
@@ -61,15 +60,12 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
         </div>
     </nav>
 
-    <!-- ===== BREADCRUMB ===== -->
     <div class="admin-breadcrumb">
         <a href="dashboard.php" class="breadcrumb-link">Aller au Dashboard</a>
     </div>
 
-    <!-- ===== MAIN LAYOUT ===== -->
     <main class="admin-main">
 
-        <!-- ===== STATS ROW ===== -->
         <div class="admin-stats">
             <div class="stat-card">
                 <p class="stat-label">Total Développeurs</p>
@@ -89,10 +85,8 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
             </div>
         </div>
 
-        <!-- ===== BOTTOM TWO COLUMNS ===== -->
         <div class="admin-cols">
 
-            <!-- LEFT: Category table -->
             <div class="admin-col-main">
                 <div class="admin-section-card">
                     <div class="admin-section-header">
@@ -126,7 +120,6 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
                 </div>
             </div>
 
-            <!-- RIGHT: Add form + banner -->
             <div class="admin-col-side">
 
                 <!-- Add category form -->
@@ -139,10 +132,6 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
                     </form>
                 </div>
 
-                <!-- Promo banner -->
-                <div class="admin-banner">
-                    <p>Système de gestion sécurisé pour l'excellence technique.</p>
-                </div>
 
             </div>
         </div>
@@ -154,11 +143,6 @@ $all_cats = $pdo->query("SELECT * FROM categories ORDER BY id DESC")->fetchAll(P
         <div class="admin-footer-left">
             <span class="admin-footer-brand">DevGenius</span>
             <span>© 2026 DevGenius. Engineering Precision.</span>
-        </div>
-        <div class="admin-footer-links">
-            <a href="#">Documentation</a>
-            <a href="#">Support</a>
-            <a href="#">Privacy</a>
         </div>
     </footer>
 

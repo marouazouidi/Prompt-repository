@@ -80,11 +80,6 @@ if(isset($_POST['login'])){
     </div>
 
     <footer class="auth-footer">
-        <p>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
-            <a href="#">Support</a>
-        </p>
         <p style="margin-top:.4rem;">© 2026 DevGenius. All rights reserved.</p>
     </footer>
 

@@ -47,7 +47,6 @@ $prompts = $stmt->fetchAll();
 </head>
 <body class="dash-body">
 
-    <!-- ===== TOP NAV ===== -->
     <nav class="dash-nav">
         <span class="dash-nav-brand">DevGenius</span>
         <div class="dash-nav-right">
@@ -56,14 +55,11 @@ $prompts = $stmt->fetchAll();
         </div>
     </nav>
 
-    <!-- ===== MAIN CONTENT ===== -->
     <main class="dash-main">
 
-        <!-- Page header -->
         <div class="dash-header">
             <div>
-                <h1 class="dash-title">Prompt Library</h1>
-                <p class="dash-subtitle">Curate and manage your collection of high-performance AI architectural blueprints.</p>
+                <h1 class="dash-title">Bibliothèque de Prompts</h1>
             </div>
         </div>
 
@@ -79,7 +75,7 @@ $prompts = $stmt->fetchAll();
                     </button>
                 <?php endforeach; ?>
             </form>
-            <a href="add.php" class="btn-add">+ Add Prompt</a>
+            <a href="add.php" class="btn-add">+ Ajouter une Prompt</a>
         </div>
 
         <!-- ===== CARD GRID ===== -->
@@ -116,7 +112,7 @@ $prompts = $stmt->fetchAll();
             <!-- Create new prompt CTA card -->
             <a href="add.php" class="prompt-card prompt-card-new">
                 <span class="new-card-plus">+</span>
-                <p>Create New Prompt</p>
+                <p>Créer une nouvelle Prompt</p>
             </a>
         </div>
         <?php endif; ?>

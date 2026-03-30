@@ -45,13 +45,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body class="add-body">
 
-    <!-- Top nav — reuses dash-nav -->
     <nav class="dash-nav">
         <span class="dash-nav-brand">DevGenius</span>
         <a href="logout.php" class="dash-nav-link">Logout</a>
     </nav>
 
-    <!-- Page wrapper — reuses add-main -->
     <main class="add-main">
         <div class="add-card">
 
@@ -61,20 +59,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p class="add-subtitle">Mettez à jour les paramètres de votre prompt de développement.</p>
             </div>
 
-            <!-- Form — PHP POST logic completely unchanged -->
             <form method="POST" class="add-form">
 
                 <!-- Title + Category side by side -->
                 <div class="add-row">
                     <div class="add-field">
-                        <label class="add-label">Title</label>
+                        <label class="add-label">Titre</label>
                         <input type="text" name="title"
                                value="<?php echo htmlspecialchars($prompts['title']); ?>"
                                placeholder="le titre"
                                class="add-input">
                     </div>
                     <div class="add-field">
-                        <label class="add-label">Category</label>
+                        <label class="add-label">Catégorie</label>
                         <select name="category_id" class="add-select">
                             <option value="">Selectionner une catégorie</option>
                             <?php foreach ($cats as $c) { ?>
@@ -96,24 +93,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Actions -->
                 <div class="add-actions">
-                    <a href="dashboard.php" class="btn-cancel">Cancel</a>
-                    <button type="submit" class="btn-save">Save Prompt</button>
+                    <a href="dashboard.php" class="btn-cancel">Annuler</a>
+                    <button type="submit" class="btn-save">Sauvegarder Prompt</button>
                 </div>
 
             </form>
         </div>
 
-        <p class="add-security-note">🔒 ENCRYPTED STORAGE ACTIVE</p>
     </main>
 
     <!-- Footer -->
     <footer class="add-footer">
         <span>© 2026 DevGenius Architectural Blueprinting. All rights reserved.</span>
-        <div class="add-footer-links">
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
-            <a href="#">Support</a>
-        </div>
     </footer>
 
 </body>

@@ -61,13 +61,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             <?php endif; ?>
 
             <form action="" method="POST">
-                <label>Full Name</label>
+                <label>Nom et Prénom</label>
                 <input type="text" name="username" placeholder="Nom" required>
 
-                <label>Email Address</label>
+                <label>Adresse email</label>
                 <input type="email" name="email" placeholder="nom@gmail.com" required>
 
-                <label>Password</label>
+                <label>Mot de passe</label>
                 <input type="password" name="password" placeholder="••••••••" required>
 
                 <label>Rôle</label>
@@ -76,7 +76,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                     <option value="Admin">🛠️ Administrateur</option>
                 </select>
 
-                <button type="submit">Create Account</button>
+                <button type="submit">Créer un compte</button>
 
                 <p class="text-center">
                     Déjà un compte ? <a href="login.php">Log In</a>
@@ -87,11 +87,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     </div>
 
     <footer class="auth-footer">
-        <p>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
-            <a href="#">Support</a>
-        </p>
         <p style="margin-top:.4rem;">© 2026 DevGenius. All rights reserved.</p>
     </footer>
 
